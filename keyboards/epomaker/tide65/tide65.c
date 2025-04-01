@@ -36,15 +36,13 @@ typedef struct {
 } hs_rgb_indicator_t;
 
 enum layers {
-    _BL = 0,
-    _FL,
-    _MBL,
-    _MFL,
-    _FBL,
-    _FFL,
-    _FMBL,
-    _FMFL,
-    _DEFA
+    _BL = 0,    // Base Layer
+    _FL,        // Function Layer
+    _EL,        // Escape Layer
+    _MBL,       // Base Layer (Mac)
+    _MFL,       // Function Layer (Mac)
+    _MEL,       // Escape Layer (Mac)
+    _CL         // Caps Lock Layer
 };
 
 hs_rgb_indicator_t hs_rgb_indicators[HS_RGB_INDICATOR_COUNT];
@@ -57,7 +55,7 @@ void rgb_matrix_hs_indicator_set(uint8_t index, RGB rgb, uint32_t interval, uint
 void rgb_matrix_hs_set_remain_time(uint8_t index, uint8_t remain_time);
 
 
-#define keymap_is_mac_system() ((get_highest_layer(default_layer_state) == _MBL) || (get_highest_layer(default_layer_state) == _FMBL))
+#define keymap_is_mac_system() ((get_highest_layer(default_layer_state) == _MBL))
 #define keymap_is_base_layer() ((get_highest_layer(default_layer_state) == _BL)  || (get_highest_layer(default_layer_state) == _MBL))
 
 uint32_t post_init_timer = 0x00;
@@ -373,10 +371,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case MO(_FBL):
-        case MO(_FMBL):
         case MO(_FL):
-        case MO(_MFL): {
+        case MO(_EL):
+        case MO(_MFL):
+        case MO(_MEL):
+        case MO(_CL): {
             if (!record->event.pressed && rgbrec_is_started()) {
                 if (no_record_fg == true) {
                     no_record_fg = false;
@@ -403,8 +402,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } break;
     }
 
-    if (rgbrec_is_started() && (!(keycode == RP_P0 || keycode == RP_P1 || keycode == RP_P2 || keycode == RP_END || keycode == RGB_MOD || keycode == MO(_FL) || keycode == MO(_MFL)))) {
-
+    if (rgbrec_is_started() && (!(keycode == RP_P0 || keycode == RP_P1 || keycode == RP_P2 || keycode == RP_END || keycode == RGB_MOD || keycode == MO(_FL) || keycode == MO(_EL) || keycode == MO(_MFL) || keycode == MO(_MEL) || keycode == MO(_CL)))) {
         return false;
     }
 
@@ -470,22 +468,12 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed)
             {
                 mac_status = keymap_is_mac_system();
-                if (keymap_is_base_layer()) {
-                    if (mac_status) {
-                        set_single_persistent_default_layer(_FMBL);
-                        layer_move(0);
-                    } else {
-                        set_single_persistent_default_layer(_FBL);
-                        layer_move(0);
-                    }
+                if (mac_status) {
+                    set_single_persistent_default_layer(_MBL);
+                    layer_move(0);
                 } else {
-                    if (mac_status) {
-                        set_single_persistent_default_layer(_MBL);
-                        layer_move(0);
-                    } else {
-                        set_single_persistent_default_layer(_BL);
-                        layer_move(0);
-                    }
+                    set_single_persistent_default_layer(_BL);
+                    layer_move(0);
                 }
             }
             return false;
@@ -608,27 +596,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 rgb_matrix_hs_indicator_set(HS_RGB_BLINK_INDEX_MAC, (RGB){RGB_WHITE}, 250, 3);
                 if (!keymap_is_mac_system()) {
                     set_single_persistent_default_layer(_MBL);
-                    layer_move(0);
-                }
-            }
-
-            return false;
-        } break;
-        case TO(_FBL): {
-            if (record->event.pressed) {
-                rgb_matrix_hs_indicator_set(HS_RGB_BLINK_INDEX_WIN, (RGB){RGB_WHITE}, 250, 3);
-                if (keymap_is_mac_system()) {
-                    set_single_persistent_default_layer(_FBL);
-                    layer_move(0);
-                }
-            }
-            return false;
-        } break;
-        case TO(_FMBL): {
-            if (record->event.pressed) {
-                rgb_matrix_hs_indicator_set(HS_RGB_BLINK_INDEX_MAC, (RGB){RGB_WHITE}, 250, 3);
-                if (!keymap_is_mac_system()) {
-                    set_single_persistent_default_layer(_FMBL);
                     layer_move(0);
                 }
             }
