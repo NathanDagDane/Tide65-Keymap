@@ -16,7 +16,7 @@ I will include a description of my own keymap, and some tips on how you can make
 
 ## Keyboard Layout
 
-The keyboard has <B>68 keys</B> and <B>1 encoder</B>. These, along with their function on my keymap and their LED's index in the RGB matrix is shown below:
+The keyboard has <B>66 keys</B> and <B>1 encoder</B>. These, along with their function on my keymap and their LED's index in the RGB matrix is shown below:
 
 <div align="center">
     <picture>
