@@ -655,38 +655,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
             return false;
         } break;
-        case RGB_MOD: {
-            if (record->event.pressed) {
-                if (rgb_matrix_get_mode() == RGB_MATRIX_CUSTOM_RGBR_PLAY) {
-                    if (rgbrec_is_started()) {
-                        rgbrec_read_current_channel(confinfo.record_channel);
-                        rgbrec_end(confinfo.record_channel);
-                        no_record_fg = false;
-                    }
-                    if (confinfo.record_last_mode != 0xFF)
-                        rgb_matrix_mode(confinfo.record_last_mode);
-                    else
-                        rgb_matrix_mode(RGB_MATRIX_DEFAULT_MODE);
-                    eeconfig_confinfo_update(confinfo.raw);
-                    dprintf("confinfo.record_last_mode = %d\r\n", confinfo.record_last_mode);
-                    start_hsv = rgb_matrix_get_hsv();
-                    return false;
-                }
-                record_rgbmatrix_increase(&(confinfo.record_last_mode));
-                eeconfig_confinfo_update(confinfo.raw);
-                start_hsv = rgb_matrix_get_hsv();
-            }
-
-            return false;
-        } break;
-        case RGB_HUI: {
-            if (record->event.pressed) {
-                record_color_hsv(true);
-                start_hsv = rgb_matrix_get_hsv();
-            }
-
-            return false;
-        } break;
         case KC_LCMD: {
             if (keymap_is_mac_system()) {
                 if (keymap_config.no_gui && !rgbrec_is_started()) {
