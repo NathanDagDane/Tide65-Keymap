@@ -1,18 +1,24 @@
-# Custom QMK Keymap for Epomaker Tide65
+<div align="center">
+    <picture>
+        <source media="(prefers-color-scheme: light)" srcset="docs/readme/Tide65-Title.png">
+        <img class="image" src="docs/readme/Tide65-Title-Dark.png" height="70px">
+    </picture>
+    <h1>Custom QMK Keymap - Wireless</h1>
+</div>
 
 Current support for QMK customisation on the Tide65 is non-functioning, as wireless code is not included in the official [qmk-firmware](https://github.com/qmk/qmk_firmware/tree/master/keyboards/epomaker/tide65) or [Epomaker](https://github.com/Epomaker/tide65) repositories.<br>
-This means wireless functionality works when using the factory firmware, but compiling your own QMK firmware and flashing this to the board will result in a wired-only with no Bluetooth or 2.4GHz connectivity.
+This means compiling your own QMK firmware and flashing this to the board will result in a wired-only board with no Bluetooth or 2.4GHz connectivity. (See [this issue](https://github.com/qmk/qmk_firmware/issues/24085))
 
 This repo is forked from a [pull request](https://github.com/qmk/qmk_firmware/pull/24209) focused on adding back the wireless functionality features. Here I have my own keymap configured, which you can compile using the following QMK MSYS command:<br>
 <p align="center">
   <code>qmk compile -kb epomaker/tide65 -km mine</code>
 </p>
 
-I will include a description of my own keymap, and some tips on how you can make your own keymap using this repo.
+I will include a description of my own keymap, and some tips on how you can make your own.
 
-> This repo also contains the <B>default keymap</B> for this keyboard, however this will <B>fail to compile</B> as, in the code's current state, the keyboard's general code is not separate from the keymap-specific code, and <B>I have modified this code</B> to work for my keymap.
+> This repo also contains the <B>default keymap</B> for this keyboard. This will <B>fail to compile</B> as the keyboard's general code is not separate from the keymap-specific code. <B>I have modified this code</B> for my keymap.
 
-> This code will <B>not</B> work for the <B>Tide75</B>. For this, you would need to correct all pins and layouts.
+> This code will <B>not</B> work for the <B>Tide75</B>. For this, you would need to configure all pins and layouts.
 
 ## Keyboard Layout
 
@@ -27,7 +33,7 @@ The keyboard has <B>66 keys</B> and <B>1 encoder</B>. These, along with their fu
 
 > These LED indexes took me too long to figure out and I have lost touch with reality.
 
-When changing the keymap, such as changing the key for <B>BT1</B>, the indicator LED to light up also needs to be updated. This can be referenced form the diagram.
+When changing the keymap, such as changing the key for <B>BT1</B>, the indicator LED to light up also needs to be updated. This can be referenced from the diagram.
 
 ## My Keymap
 
@@ -46,10 +52,10 @@ For a full list of shortcuts on the keyboard, refer to the keymap file here, or 
 * <B>Encoder</B> - The encoder controls different things depending on the lactive layer.
 * <B>RGB Lighting</B> - Space bar shines <B>red</B> when caps lock is on. Each layer lights up special keys.
 
-<details>
+<details open>
 <summary><h3>Shortcuts</h3></summary>
 
-* `Caps Lock` +
+* `Caps Lock` + <I>(used for keyboard-related stuff)</I>
     * `1-3` - Connect to <I>Bluetooth 1-3</I>
     * `4` - Connect to <I>2.4GHz dongle</I>
     * `5` - Connect to <I>wired mode</I>
@@ -61,12 +67,13 @@ For a full list of shortcuts on the keyboard, refer to the keymap file here, or 
     * `Encoder press` - Keyboard RGB on/off
     * `Encoder ↺` - Keyboard RGB brightness -
     * `Encoder ↻` - Keyboard RGB brightness +
+    * `Esc` - Enter <B>DFU mode</B> <I>(For flashing keyboard)</I>
 #### Windows
-* `Fn` +
+* `Fn` + <I>(used for function keys)</I>
     * `1-+` - <B>F1-F12</B>
     * `Encoder ↺` - Keyboard RGB hue -
     * `Encoder ↻` - Keyboard RGB hue +
-* `Esc` +
+* `Esc` + <I>(used for system-related stuff)</I>
     * `E` - Open File Explorer
     * `T` - Open Task Manager
     * `S` - Take Screenshot
@@ -77,11 +84,11 @@ For a full list of shortcuts on the keyboard, refer to the keymap file here, or 
     * `Encoder ↺` - System brightness -
     * `Encoder ↻` - System brightness +
 #### MacOS
-* `Fn` +
+* `Fn` + <I>(used for function keys)</I>
     * `1-+` - <B>F1-F12</B>
     * `Encoder ↺` - Keyboard RGB hue -
     * `Encoder ↻` - Keyboard RGB hue +
-* `Esc` +
+* `Esc` + <I>(used for system-related stuff)</I>
     * `S` - Take Screenshot
     * `Del` - Media previous
     * `PgUp` - Media play/pause
