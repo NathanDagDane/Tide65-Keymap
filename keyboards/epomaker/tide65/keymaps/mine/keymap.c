@@ -155,12 +155,14 @@ bool rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(56, RGB_BLUE); // Left
             rgb_matrix_set_color(42, RGB_BLUE); // W
             rgb_matrix_set_color(62, RGB_BLUE); // M
+            rgb_matrix_set_color(64, RGB_BLUE); // B
             break;
         case _EL:
             rgb_matrix_set_color(41, RGB_BLUE); // E
             rgb_matrix_set_color(44, RGB_BLUE); // A
             rgb_matrix_set_color(45, RGB_BLUE); // S
             rgb_matrix_set_color(39, RGB_BLUE); // T
+            rgb_matrix_set_color(34, RGB_BLUE); // P
             rgb_matrix_set_color(24, RGB_BLUE); // Music Prev
             rgb_matrix_set_color(25, RGB_BLUE); // Music Play/Pause
             rgb_matrix_set_color(26, RGB_BLUE); // Music Next

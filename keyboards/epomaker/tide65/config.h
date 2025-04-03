@@ -33,10 +33,10 @@
 #define HS_LBACK_COLOR_2G4 RGB_GREEN
 #define HS_LBACK_COLOR_USB RGB_WHITE
 
-#define HS_PAIR_COLOR_BT1 RGB_BLUE
-#define HS_PAIR_COLOR_BT2 RGB_BLUE
-#define HS_PAIR_COLOR_BT3 RGB_BLUE
-#define HS_PAIR_COLOR_2G4 RGB_GREEN
+#define HS_PAIR_COLOR_BT1 RGB_WHITE
+#define HS_PAIR_COLOR_BT2 RGB_WHITE
+#define HS_PAIR_COLOR_BT3 RGB_WHITE
+#define HS_PAIR_COLOR_2G4 RGB_WHITE
 
 #define WIITE_B 0X6e
 
@@ -46,8 +46,8 @@
 #define RGB_MATRIX_BAT_INDEX_MAP {11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
 /* Status Indicator Lamp */
-#define HS_MATRIX_BLINK_INDEX_BAT           57
-#define HS_RGB_INDEX_CAPS                   8
+// #define HS_MATRIX_BLINK_INDEX_BAT           57 // Uncomment for charging indicator
+// #define HS_RGB_INDEX_CAPS                   8  // Uncomment for default caps lock indicator
 #define HS_RGB_INDEX_WIN_LOCK               5
 #define HS_RGB_BLINK_INDEX_VAI              29
 #define HS_RGB_BLINK_INDEX_VAD              28

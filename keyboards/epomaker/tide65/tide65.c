@@ -892,10 +892,13 @@ void bat_indicators(void) {
     } else if (charging_state) {
 
         battery_process_time = 0;
+        #ifdef HS_MATRIX_BLINK_INDEX_BAT
         rgb_matrix_set_color(HS_MATRIX_BLINK_INDEX_BAT, RGB_RED);
+        #endif
     } else if (*md_getp_bat() <= BATTERY_CAPACITY_LOW) {
-
+        #ifdef HS_MATRIX_BLINK_INDEX_BAT
         rgb_matrix_hs_bat_set(HS_MATRIX_BLINK_INDEX_BAT, (RGB){RGB_RED}, 250, 1);
+        #endif
 
         if (*md_getp_bat() <= BATTERY_CAPACITY_STOP) {
             if (!battery_process_time) {
@@ -1062,8 +1065,10 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 
     if ((*md_getp_state() == MD_STATE_CONNECTED) || USB_DRIVER.state == USB_ACTIVE)
     {
+        #ifdef HS_RGB_INDEX_CAPS
         if (host_keyboard_led_state().caps_lock)
             rgb_matrix_set_color(HS_RGB_INDEX_CAPS, RGB_WHITE);
+        #endif
 
         if (!keymap_is_mac_system() && keymap_config.no_gui)
             rgb_matrix_set_color(HS_RGB_INDEX_WIN_LOCK, RGB_WHITE);
