@@ -49,6 +49,7 @@
 // #define HS_MATRIX_BLINK_INDEX_BAT           57 // Uncomment for charging indicator
 // #define HS_RGB_INDEX_CAPS                   8  // Uncomment for default caps lock indicator
 #define HS_RGB_INDEX_WIN_LOCK               5
+
 #define HS_RGB_BLINK_INDEX_VAI              29
 #define HS_RGB_BLINK_INDEX_VAD              28
 #define HS_RGB_BLINK_INDEX_SPI              27
