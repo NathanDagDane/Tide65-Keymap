@@ -25,7 +25,7 @@ The keyboard has <B>66 keys</B> and <B>1 encoder</B>. These, along with their fu
     </picture>
 </div>
 
-> Thele LED indexes took me too long to figure out and I have lost touch with reality.
+> These LED indexes took me too long to figure out and I have lost touch with reality.
 
 When changing the keymap, such as changing the key for <B>BT1</B>, the indicator LED to light up also needs to be updated. This can be referenced form the diagram.
 
